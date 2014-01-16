@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+<title>Assignment 2</title>
+</head>
+
+<body>
+
+<script>
+
+var fighter = confirm('Do you want to see Batman vs Superman?');
+
+if (fighter) {
+	
+	console.log('Awesome!');
+	var hero = prompt('Who do you think would win?');
+	
+	console.log('It looks like it might be a close fight');
+	
+	hero = hero.toLowerCase();
+	
+	if (hero == 'batman') {
+		
+		var tools = prompt("How many tools from Batman's belt would it take to stop Superman?");
+		
+		tools = Number(tools);	
+		
+		if (tools >= 1 ) {
+			console.log('The only tool Batman needs is Kyrptonite.');
+		}
+		else if (tools < 1 ) {
+			console.log('It depends if Batman got some Kryptonite');
+		} 
+		else {
+			console.log("You didn't pick a number...");
+		}
+	
+	}
+	else if (hero == 'superman') {
+		var punches = prompt("How many punches do you think it would take to knock Batman out?");
+		
+		punches = Number(punches);
+		
+		if (punches >= 1 ) {
+			console.log('Are you kidding me, one punch from Superman would kill any normal Human!');
+		}
+		else if (punches < 1 ) {
+			console.log("Your right Superman doesn't need puches to knock Batman out, he could use super breathe. ");
+		}
+		else {
+			console.log("You didn't pick a number...");
+		}
+
+	}
+	else {
+		console.log("You didn't pick Batman or Superman");
+	}
+	
+	
+	
+} else {
+	
+	console.log('What!?! Why not?');
+	
+	var movie = prompt("Who's movie would you rather watch? Batman or Superman?");
+	
+	movie = movie.toLowerCase();
+	
+	if (movie == 'batman') {
+		console.log("Great! I can't wait to see the next Batman movie as well.");
+	}
+	else if (movie == 'superman') {
+		console.log("Great! I can't wait to see the next Superman movie as well");
+	}
+	else {
+		console.log("You didn't pick Batman or Superman");
+	}
+}
+
+</script>
+
+
+</body>
+
+</html>
