@@ -1,0 +1,53 @@
+﻿<!DOCTYPE>
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8">
+<title>Assignment 3</title>
+</head>
+
+<body>
+
+
+
+<script src="expenditures.js"></script>
+
+<script>
+console.log(expenditures.length);
+
+var total = 0;
+var high = expenditures[0];
+var low = expenditures[0];
+
+for(var i = 0; i < expenditures.length; i++){
+	//current
+	var ralph = expenditures[i];
+	//convert amount to a number
+	var toNumbers = Number(expenditures[i].amount);
+	//add the total amounts together to find the average
+	var addition = total + toNumbers;
+	total = addition
+	
+	//find the highest amount
+	if(high.amount < ralph.amount){
+		high = ralph;
+	}
+	//find the lowest amount
+	if(low.amount > ralph.amount){
+		low = ralph;
+	}
+		
+
+}
+console.log('the total expenditures is: ' + total + ' and the total number of countries is: ' + expenditures.length + ' so the average is: ' + (total/expenditures.length));
+
+console.log('the highest expenditure is: ' + high.amount + ' so the the country with the highest expenditures is ' + high.country );
+
+console.log('the lowest expenditures is: ' + low.amount + ' so the the country with the lowest expenditures is ' + low.country );
+
+
+
+</script>
+</body>
+
+</html>
