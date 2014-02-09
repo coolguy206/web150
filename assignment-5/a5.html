@@ -1,0 +1,127 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Assignment 5 Gallery</title>
+<style>
+.container {
+	width: 960px;
+	padding: 20px;
+	margin: auto;
+	overflow: hidden;
+}
+.big-image {
+	width: 620px;
+	float: left;
+	min-height: 100px;
+	text-align: center;
+}
+ul {
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+	width: 300px;
+	float: left;
+	margin-right: 20px;
+}
+li {
+	list-style-type: none;
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 10px;
+	height: 100px;
+	overflow: hidden;
+}
+li:nth-of-type(2n){
+	margin-right: 0px;
+}
+li img {
+	width: 140px;
+}
+img {
+	max-width: 100%;
+}
+</style>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<ul>
+<li><a href="#one"><img src="images/disney-pic1.JPG" alt="Donald Duck"></a></li>
+<li><a href="#two"><img src="images/disney-pic2.JPG" alt="Leilu"></a></li>
+<li><a href="#three"><img src="images/disney-pic3.JPG" alt="David"></a></li>
+<li><a href="#four"><img src="images/disney-pic4.JPG" alt="Whinnie and Tigger"></a></li>
+<li><a href="#five"><img src="images/disney-pic5.JPG" alt="Snow White"></a></li>
+<li><a href="#six"><img src="images/disney-pic6.JPG" alt="Mulan"></a></li>
+<li><a href="#seven"><img src="images/disney-pic7.JPG" alt="Wolverine"></a></li>
+<li><a href="#eight"><img src="images/disney-pic8.JPG" alt="Sponge Bob"></a></li>
+</ul>
+
+<div class="big-image" id="one">
+	<img src="images/disney-pic1.JPG" alt="Donald Duck">
+</div>
+
+<div class="big-image" id="two">
+	<img src="images/disney-pic2.JPG" alt="Leilu">
+</div>
+
+<div class="big-image" id="three">
+	<img src="images/disney-pic3.JPG" alt="David">
+</div>
+
+<div class="big-image" id="four">
+	<img src="images/disney-pic4.JPG" alt="Whinnie and Tigger">
+</div>
+
+<div class="big-image" id="five">
+	<img src="images/disney-pic5.JPG" alt="Snow White">
+</div>
+
+<div class="big-image" id="six">
+	<img src="images/disney-pic6.JPG" alt="Mulan">
+</div>
+
+<div class="big-image" id="seven">
+	<img src="images/disney-pic7.JPG" alt="Wolverine">
+</div>
+
+<div class="big-image" id="eight">
+	<img src="images/disney-pic8.JPG" alt="Sponge Bob">
+</div>
+
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<script>
+
+//find the element
+var disney = $('li a');
+disney.on('click', function(e){
+	//hide the current
+	$('.big-image:visible').hide();
+	//get the element clicked
+	var $this = $(this);
+	//get the href
+	var href = $this.attr('href');
+	//find the image with the value
+	var show = $(href);
+	//show the image
+	show.show();
+	e.preventDefault();
+});
+
+
+var start = disney.filter(':first');
+start.click();
+</script>
+
+</div><!--.container-->
+
+</body>
+
+</html>
