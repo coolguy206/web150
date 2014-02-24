@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Assignment 7</title>
+<style>
+canvas {
+	border: 1px solid #000;
+	display: block;
+}
+.image img {
+	width: 30px;
+}
+</style>
+</head>
+
+<body>
+<h1>Let's Paint!!!</h1>
+Brush Size
+<input type="text" class="size"/>
+
+Brush Shape
+<select>
+  <option class="shape" value="square" data-shape="square">square</option>
+  <option class="shape" value="circle" data-shape="circle">circle</option>
+</select>
+
+Brush Color
+<input type="text" class="color"/>
+
+Image Stamps
+<button class="image" data-image=""><img src="images/spongebob1.jpg" id="spongebob"></button>
+<button class="image" data-image=""><img src="images/spongebob-and-patrick.jpg" id="sp1"></button>
+
+Enter Text
+<input type="text" class="text">
+
+<canvas width="800" height="600" id="canvas">
+Your browser doesn't support HTML5 canvas please upgrade your browser
+</canvas>
+
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<script>
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var $canvas = $('canvas');
+
+var brush = {
+	active: false,
+	shape: 'square',
+	size: '10',
+	color: 'black'
+};
+
+var drawRect = function(x, y, w, h){
+	context.fillRect(x, y, w, h);
+};
+
+var drawCircle = function(x, y, size) {
+	context.beginPath();
+	context.arc(x, y, size, 0, 2 * Math.PI);
+	context.fill();
+};
+
+
+var drawLine = function(mx, my, lx, ly){
+	context.moveTo(mx, my);
+	context.lineTo(lx, ly);
+	context.stroke();
+};
+
+$canvas.on('mousemove', function(e){
+	var offset = $canvas.offset();
+	var x = e.pageX - offset.left;
+	var y = e.pageY- offset.top;
+	
+	if(brush.active){
+		context.fillStyle = brush.color;
+		if(brush.shape == 'square'){
+			drawRect(x, y, brush.size, brush.size);
+		} else if(brush.shape == 'circle'){
+			drawCircle(x, y, brush.size);
+		} 
+	}
+});
+
+$canvas.on('mousedown mouseup', function(e){
+	if(e.type == 'mousedown'){
+		brush.active = true;
+	}
+	if(e.type == 'mouseup'){
+		brush.active = false;
+	}
+});
+
+
+var sizes = $('.size');
+sizes.on('change', function(){
+	var content = sizes.val();
+	var size = Number(content);
+	if(size !== size){
+		alert('please enter a number');
+	}
+	brush.size = size;
+});
+
+
+var shapes = $('.shape');
+shapes.on('click', function(){
+	var $this = $(this);
+	var shape = $this.attr('data-shape');
+	brush.shape = shape;
+});
+
+var colors = $('.color');
+colors.on('change', function(){
+	var content = colors.val();
+	var color = content;
+	brush.color = color;
+});
+
+var img = $('.image');
+img.on('click', function(e){
+	var $this = $(this);
+	var image = $this.find('img').attr('id');
+	var images = document.getElementById(image);
+	context.drawImage(images, 200, 200);
+});
+
+var fontSize = $('.font-size');
+fontSize.on('change', function(){
+	var content = fontSize.val();
+	content = Number(content);
+	if(content !== content){
+		alert('please enter a number');
+	}
+	font.size = content + 'px';
+});
+
+var text = $('.text');
+text.on('change', function(){
+	var content = text.val();
+	context.font = '32px arial'
+	context.fillText(content, 50, 40);
+});
+
+
+</script>
+
+</body>
+
+</html>
