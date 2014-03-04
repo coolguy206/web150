@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" >
+<title>Assignment 8</title>
+</head>
+
+<body>
+
+<button class="magic" data-category="yes">Positive Magic 8 Ball Fortune</button>
+
+<button class="magic" data-category="no">Negative Magic 8 Ball Fortune</button>
+
+<button class="magic" data-category="maybe">Probable Magic 8 Ball Fortune</button>
+<div></div>
+
+
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<script>
+
+var getRequest = function(category){
+	var request = $.ajax({
+		url:'http://thomaswilburn.net:8080/magic8', 
+		dataType: 'jsonp',
+		data: {
+			category: category
+		}
+	});
+
+
+	request.done(function(data, number){
+		var content = data.answer;
+		var magic = $('.magic');
+		var fortune = magic.next('div');
+		fortune.html(content).hide().fadeIn();
+	
+	});
+
+};
+
+
+$('button').on('click', function(){	
+	var $this = $(this);
+	var category = $this.attr('data-category');
+	console.log(category);
+	getRequest(category);
+		
+});
+
+</script>
+
+</body>
+
+</html>
