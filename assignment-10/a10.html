@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Assignment 10</title>
+<link href="css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/jquery-ui-1.10.4.custom.js"></script>
+
+<style>
+.container {
+	width: 960px;
+	padding: 20px;
+	margin: auto;
+	overflow: hidden;
+}
+.box460 {
+	width: 460px;
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 10px;
+}
+.droppable {
+	border: 1px solid #000;
+	min-height: 200px;
+	overflow: hidden;
+}
+.float-right {
+	float: right;
+}
+ul {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+}
+.clear {
+	clear: both;
+}
+.start-warning, .end-warning, .location-warning {
+	display: block;
+	text-transform: uppercase;
+	color: #f00;
+	margin-top: 10px;
+}
+.element {
+	padding: 5px;
+	border: 1px solid #000;
+	height: 150px;
+	width: 100px;
+	float: left; 
+	margin-right: 20px;
+}
+</style>
+</head>
+
+<body>
+
+
+
+<div class="container">
+	<header>
+	<h1>Let's make your Car Reservation</h1>
+	<h2>Your Location</h2>
+	<select>
+		<option>Home</option>
+		<option>Work</option>
+		<option>School</option>
+	</select>
+	<input type="text" class="location">
+	<button class="addLocation">Add location</button>
+	<span class="location-warning">Please enter a location</span>
+
+	</header>
+	<div class="box460">
+	<h2>Start Date</h2>
+	<input type="text" class="date" id="start">
+	<span class="start-warning">Please select a Start Date</span>
+	<h3>Available Cars</h3>
+	<ul class="accordion">
+		<li>
+			<h3>Honda</h3>
+			<div>
+				
+				<p>
+				<span class="element">HONDA Image</span>
+				Donec semper tellus a odio ornare vulputate. In posuere eu dolor at consectetur. Donec vel massa id risus semper convallis. Nam tellus massa, fringilla eget gravida tristique, euismod a mi. 
+				</p>
+			</div>
+		</li>
+		<li>
+			<h3>Ford</h3>
+			<div>
+				<span class="element">FORD Image</span>
+				<p>
+	Donec semper tellus a odio ornare vulputate. In posuere eu dolor at consectetur. Donec vel massa id risus semper convallis. Nam tellus massa, fringilla eget gravida tristique, euismod a mi.  
+				</p>
+			</div>
+		</li>
+		<li>
+			<h3>Toyota</h3>
+			<div>
+			<span class="element">TOYOTA Image</span>
+				<p>
+					Donec semper tellus a odio ornare vulputate. In posuere eu dolor at consectetur. Donec vel massa id risus semper convallis. Nam tellus massa, fringilla eget gravida tristique, euismod a mi. 
+				</p>
+			</div>
+		</li>
+		<li>
+			<h3>Chevrolet</h3>
+			<div>
+			<span class="element">CHEVROLET Image</span>
+				<p>
+			Donec semper tellus a odio ornare vulputate. In posuere eu dolor at consectetur. Donec vel massa id risus semper convallis. Nam tellus massa, fringilla eget gravida tristique, euismod a mi. 
+				</p>
+			</div>
+		</li>
+		<li>
+			<h3>Subaru</h3>
+			<div>
+			<span class="element">SUBARU Image</span>
+				<p>
+			Donec semper tellus a odio ornare vulputate. In posuere eu dolor at consectetur. Donec vel massa id risus semper convallis. Nam tellus massa, fringilla eget gravida tristique, euismod a mi. 
+				</p>
+			</div>
+		</li>
+		<li>
+			<h3>Audi</h3>
+			<div>
+			<span class="element">AUDI Image</span>
+				<p>
+	Donec semper tellus a odio ornare vulputate. In posuere eu dolor at consectetur. Donec vel massa id risus semper convallis. Nam tellus massa, fringilla eget gravida tristique, euismod a mi. 
+				</p>
+			</div>
+		</li>
+		<li>
+			<h3>Nissan</h3>
+			<div>
+			<span class="element">NISSAN Image</span>
+				<p>
+			Donec semper tellus a odio ornare vulputate. In posuere eu dolor at consectetur. Donec vel massa id risus semper convallis. Nam tellus massa, fringilla eget gravida tristique, euismod a mi. 
+				</p>
+			</div>
+		</li>
+	</ul>
+	</div><!--.box460-->
+	
+	<div class="box460">
+	<h2>End Date</h2>
+	<input type="text" class="date" id="end">
+	<span class="end-warning">Please select a End Date</span>
+	<h3>Drag your selection Here</h3>
+	<div class="droppable">
+	
+	</div><!--.droppable-->
+	</div><!--.box460-->
+
+<button class="float-right" id="reservation">Make Reservation</button>
+
+</div><!--.container-->
+
+<div class="dialog">
+<h1>Your Reservation was not confirmed</h1>
+<p>
+	Due to technical difficulties we could not process your reservations. We're sorry for the inconvience, please call the call center to make your reservations. <br><br>Thank you
+</p>
+</div>
+
+<script>
+$('.start-warning, .end-warning, .location-warning').hide();
+$('.dialog').dialog({ 
+	autoOpen: false, 
+	draggable: true,
+	resizable: true,
+	minWidth: 400,
+	show: { effect: "shake"},
+	hide: { effect: "highlight" }
+});
+$('.accordion').accordion({
+	active: false,
+	collapsible: true,
+	heightStyle: 'content'
+});
+$('.date').datepicker({ dateFormat: "M-d-yy" });
+var dropElement = $('.droppable');
+$('.element').draggable({ 
+	appendTo: dropElement,
+	helper: "clone",
+	refreshPositions: true
+});
+$('.droppable').droppable({
+	drop: function(event, ui) {
+		$("<span class='element'></span>").text( ui.draggable.text() ).appendTo( this );
+	}
+});
+
+var button = $('#reservation');
+button.on('click', function(){
+	var dialog = $('.dialog');
+	var start = $('#start');
+	var end = $('#end');
+	var startWarning = $('.start-warning');
+	var endWarning = $('.end-warning'); 
+	if(start.val()==''){
+		startWarning.show('shake');
+	} else if(end.val()=='') {
+		endWarning.show('shake');
+
+	} else {
+		startWarning.hide('highlight');
+		endWarning.hide('highlight');
+		dialog.dialog('open');	
+	}
+	
+});
+
+var local = $('.location');
+var addLocal = $('.addLocation');
+addLocal.on('click', function(){
+	var content;
+	content = local.val();
+	if(content==""){
+		$('.location-warning').show('shake');
+	} else {
+		$('.location-warning').hide('highlight');
+		$('select').append('<option>'+content+'</option>');
+	}
+});
+
+</script>
+</body>
+
+</html>
